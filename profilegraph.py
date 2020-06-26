@@ -1,3 +1,5 @@
+"IPython line magic showing cProfile SVG graphs using gprof2dot and graphviz."
+
 import os
 import re
 from subprocess import check_output
