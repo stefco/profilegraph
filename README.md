@@ -1,5 +1,7 @@
 # `profilegraph`
 
+![pypi badge](https://img.shields.io/pypi/v/profilegraph)
+
 A line magic for displaying `cProfile` results in graph form. Like `%time`, but
 with far more information (with the performance penalty you'd expect from
 `cProfile.run`).
