@@ -6,6 +6,9 @@ A line magic for displaying `cProfile` results in graph form. Like `%time`, but
 with far more information (with the performance penalty you'd expect from
 `cProfile.run`).
 
+Inspired by
+[mattijn/gprof2dot_magic](https://github.com/mattijn/gprof2dot_magic).
+
 ![A trivial profilegraph example.](./static/os.getcwd.example.gif)
 
 ## Install
@@ -17,9 +20,6 @@ other python dependency is
 automatically, and a [`graphviz`](https://www.graphviz.org/download/) binary,
 which is used to render the SVG output. You can install `graphviz` from the
 provided download link or using the package manager of your choice.
-
-Inspired by
-[mattijn/gprof2dot_magic](https://github.com/mattijn/gprof2dot_magic).
 
 ```bash
 pip install profilegraph
