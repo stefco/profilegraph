@@ -39,3 +39,20 @@ import re
 ```
 
 ![Profile result on re.sub](./static/re.sub.example.png)
+
+## Develop
+
+`profilegraph` uses [`flit`](https://flit.readthedocs.io/en/latest/). Install
+`flit` with `pip install flit`.
+
+Install in editable mode with:
+
+```bash
+flit install [--symlink] [--python path/to/python]
+```
+
+Upload to PyPI with:
+
+```bash
+flit publish
+```
