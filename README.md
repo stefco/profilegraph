@@ -2,7 +2,8 @@
 
 ![pypi badge](https://img.shields.io/pypi/v/profilegraph)
 
-A line magic for displaying `cProfile` results in graph form. Like `%time`, but
+A line/cell magic for displaying `cProfile` results in graph form. Like `%time`
+or `%%time`, but
 with far more information (with the performance penalty you'd expect from
 `cProfile.run`).
 
@@ -41,6 +42,15 @@ import re
 ```
 
 ![Profile result on re.sub](./static/re.sub.example.png)
+
+If you have a whole cell that needs to be profiled, you can use the cell magic
+form:
+
+```python
+%%profilegraph
+for i in range(10):
+    print(i)
+```
 
 ## Develop
 
