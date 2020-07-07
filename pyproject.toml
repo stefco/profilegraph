@@ -10,3 +10,8 @@ home-page = "https://github.com/stefco/profilegraph"
 classifiers = ["License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"]
 requires = ["gprof2dot"]
 requires-python = ">=3.6"
+
+[tool.flit.metadata.requires-extra]
+ipy = ["ipython"]
+test = ["pytest"]
+dev = ["flit"]
