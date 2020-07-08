@@ -6,6 +6,7 @@ build-backend = "flit_core.buildapi"
 module = "profilegraph"
 author = "Stefan Countryman"
 author-email = "stefan.countryman@gmail.com"
+description-file = "README.md"
 home-page = "https://github.com/stefco/profilegraph"
 classifiers = ["License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"]
 requires = ["gprof2dot"]
