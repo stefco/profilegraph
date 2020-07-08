@@ -12,9 +12,9 @@ import cProfile
 import gprof2dot
 
 
-def graphviz_plot(imgfile, fmt):
+def graphviz_plot(imgfile, fmt, *a):
     with open(imgfile, 'rb') as f:
-        return check_output(['dot', '-Gbgcolor=transparent', '-T%s'%fmt],
+        return check_output(['dot', '-Gbgcolor=transparent', '-T%s'%fmt, *a],
                             input=f.read())
 
 
@@ -32,6 +32,7 @@ def imgcat(img, wb):
 
 
 def profilegraph(line, cell=None):
+    outfile = None if cell is None else line.split()[0] if line else None
     line = line if cell is None else cell
     tmp = NamedTemporaryFile(suffix='.pstats', mode='w', delete=False)
     try:
@@ -43,7 +44,12 @@ def profilegraph(line, cell=None):
         try:
             gprof2dot.main(['-f', 'pstats', '-o', dtmp, tmp.name])
             print("done.\nMaking image... ", end='')
+            if outfile is not None:
+                graphviz_plot(dtmp, outfile.split('.')[-1], '-o%s'%outfile)
             if sys.stdout.isatty():
+                if outfile is not None:
+                    print("done.\nImage saved at %s"%outfile)
+                    return
                 if not any('iterm' in e.lower() for e in os.environ):
                     raise RuntimeError("TTY output detected, but no iTerm "
                                        "support detected; must run this in a "
@@ -52,9 +58,11 @@ def profilegraph(line, cell=None):
                 img = graphviz_plot(dtmp, 'png')
                 print("done.\nDisplaying...")
                 return imgcat(img, getattr(sys.stdout, 'buffer', sys.stdout))
-            img = graphviz_plot(dtmp, 'svg').decode()
-            print("done.\nDisplaying...")
             from IPython.display import HTML
+            if outfile is not None:
+                return HTML('<a href="%s">File saved at %s</a>'
+                            % (outfile, outfile))
+            img = graphviz_plot(dtmp, 'svg').decode()
             return HTML(img)
         finally:
             if os.path.isfile(dtmp):
