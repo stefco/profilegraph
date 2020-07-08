@@ -32,6 +32,16 @@ def imgcat(img, wb):
 
 
 def profilegraph(line, cell=None):
+    """
+    Profile a python statement or expression and generate a graphviz plot
+    showing which parts of the code took up the most time. In Jupyter or in an
+    iTerm terminal session, display the generated image in the output cell.
+
+    - In line mode, profile a single line of code; the image will always be
+      displayed immediately below.
+    - In cell mode, profile the contents of the cell. Optionally provide an
+      output file name to save the plotted image.
+    """
     outfile = None if cell is None else line.split()[0] if line else None
     line = line if cell is None else cell
     tmp = NamedTemporaryFile(suffix='.pstats', mode='w', delete=False)
